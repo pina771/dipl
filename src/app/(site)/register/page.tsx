@@ -30,8 +30,10 @@ export default function Register() {
       body: JSON.stringify(formData),
     }).then((response) => {
       const data = response.json();
-      if (response.ok) toast.success("User has been registered.");
-      else toast.error("error occurred");
+      if (response.ok) {
+        toast.success("User has been registered.");
+        router.push("/login");
+      } else toast.error("error occurred");
     });
   };
 

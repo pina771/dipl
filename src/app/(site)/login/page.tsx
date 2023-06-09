@@ -36,7 +36,7 @@ const Login = () => {
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="text-gray-900 mt-10 text-2xl font-bold leading-9 tracking-tight">
               Sign in to your account.
             </h2>
           </div>
@@ -47,7 +47,7 @@ const Login = () => {
                 <div className="flex">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="text-gray-900 block text-sm font-medium leading-6"
                   >
                     Email address
                   </label>
@@ -61,7 +61,7 @@ const Login = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -70,7 +70,7 @@ const Login = () => {
                 <div className="flex">
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="text-gray-900 block text-sm font-medium leading-6"
                   >
                     Password
                   </label>
@@ -84,7 +84,7 @@ const Login = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, password: e.target.value })
                     }
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600 block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -92,20 +92,20 @@ const Login = () => {
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600 flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   onClick={(e) => handleLogin(e)}
                 >
-                  Sign-in
+                  Sign in
                 </button>
 
                 <button
                   onClick={() => signIn("google")}
-                  className="mt-2  flex w-full justify-center rounded-md bg-slate-600  px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
+                  className="text-white  focus-visible:outline-slate-600 mt-2 flex w-full justify-center  rounded-md bg-secondary-container px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
-                  Sign in with Google.
+                  Sign in with Google
                 </button>
                 <Link
-                  className="my-3 flex w-full justify-end text-sm text-gray-600 hover:underline"
+                  className="my-3 flex w-full justify-end text-sm text-secondary hover:underline"
                   href="/register"
                 >
                   Not a member? Register instead!
