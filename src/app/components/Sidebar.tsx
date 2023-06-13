@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import prisma from "../../utils/prisma";
+import { prisma } from "../../utils/prisma";
 import Link from "next/link";
 
 const fetchTripsForUsername = async (email: string) =>
@@ -9,7 +9,8 @@ const fetchTripsForUsername = async (email: string) =>
 
 export async function Sidebar() {
   const session = await getServerSession(authOptions);
-  if (!session || !session.user?.email) redirect("login");
+  if (!session || !session.user || !session.user.email) return null;
+
   const trips = (await fetchTripsForUsername(session.user.email))?.trips;
 
   return (
@@ -19,6 +20,7 @@ export async function Sidebar() {
         <span className="rounded-full w-6 h-6 ring-2  border-1 "></span>
         <h2 className=" text-xl "> {session.user.name}</h2>
       </div>
+      <Link href="/trips/add">ADD TRIP</Link>
       <div className="flex flex-col items-start">
         <h3 className=" text-lg font-semibold">Your trips:</h3>
         <ul className="w-full">

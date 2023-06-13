@@ -32,7 +32,7 @@ export default async function Home() {
               Join here!
             </Link>
             <Link
-              href="/register"
+              href="/login"
               className=" h-fit w-fit text-lg text-gray-600 hover:underline"
             >
               Already a member? Sign in instead.

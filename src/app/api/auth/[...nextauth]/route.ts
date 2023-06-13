@@ -1,4 +1,4 @@
-import prisma from "@/utils/prisma";
+import { prisma } from "@/utils/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { pbkdf2Sync } from "crypto";
 import NextAuth, { AuthOptions } from "next-auth";
@@ -60,6 +60,9 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   debug: process.env.NODE_ENV === "development",
+  pages: {
+    signIn: "/login",
+  },
 };
 
 const handler = NextAuth(authOptions);

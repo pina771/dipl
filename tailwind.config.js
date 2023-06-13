@@ -7,7 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-
+      backdropBrightness: {
+        80: ".8",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
