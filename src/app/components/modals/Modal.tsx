@@ -39,7 +39,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
       className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm backdrop-brightness-80"
       onClick={(e) => onClick(e)}
     >
-      <div ref={wrapper} className="bg-white p-4 rounded-md shadow-lg">
+      <div ref={wrapper} className="bg-white p-4 rounded-md shadow-lg w-fit">
         {children}
       </div>
     </div>

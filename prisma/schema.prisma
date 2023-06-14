@@ -44,6 +44,8 @@ model User {
     accounts       Account[]
     sessions       Session[]
     trips          Trip[]
+    friends        User[]    @relation("UserFriends")
+    friends2       User[]    @relation("UserFriends")
 }
 
 model Trip {

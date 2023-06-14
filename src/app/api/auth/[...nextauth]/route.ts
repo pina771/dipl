@@ -1,4 +1,4 @@
-import { prisma } from "@/utils/prisma";
+import { prisma } from "@/lib/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { pbkdf2Sync } from "crypto";
 import NextAuth, { AuthOptions } from "next-auth";

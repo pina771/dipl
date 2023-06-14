@@ -1,10 +1,10 @@
 function Trip() {
   return (
     <div>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus, autem
-      ipsam. Illum beatae eligendi, laborum excepturi, impedit rem atque
-      aspernatur, velit aut accusamus tempore vel iusto incidunt debitis in?
-      Sequi?
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae ipsa
+      corrupti veniam reprehenderit sapiente quia a dignissimos obcaecati eos
+      consequatur magnam cupiditate dolore, quae unde quaerat accusamus fuga
+      voluptatibus tempore?
     </div>
   );
 }

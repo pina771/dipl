@@ -1,8 +1,11 @@
-import { prisma } from "../../../utils/prisma";
+import { prisma } from "@/lib/prisma";
 import TopBar from "../../components/TopBar";
 
 const fetchTripInfo = async (id: string) =>
-  prisma.trip.findFirst({ where: { id } });
+  prisma.trip.findFirst({
+    include: { users: { select: { id: true, name: true } } },
+  });
+
 const TripLayout = async ({
   children,
   params,
@@ -10,11 +13,10 @@ const TripLayout = async ({
   children: React.ReactNode;
   params: { id: string };
 }) => {
-  const tripInfo = await fetchTripInfo(params.id);
   return (
     <div>
-      <TopBar tripInfo={tripInfo!} />
-      {children} {params.id}
+      <TopBar id={params.id} />
+      {children}
     </div>
   );
 };

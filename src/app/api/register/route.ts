@@ -1,4 +1,4 @@
-import { prisma } from "@/utils/prisma";
+import { prisma } from "@/lib/prisma";
 import { pbkdf2Sync } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 

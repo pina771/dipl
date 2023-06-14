@@ -1,47 +1,63 @@
 "use client";
-import { useForm, Controller } from "react-hook-form";
-import DatePicker from "react-datepicker";
-import Modal from "./modals/Modal";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/Form";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
-type FormData = {
-  name: string;
-  desc: string;
-  dateFrom: Date;
-  dateUntil: Date;
-};
+const FormSchema = z.object({
+  name: z.string().min(5, {
+    message: "Trip name must be at least 5 characters.",
+  }),
+  desc: z.string(),
+});
+
 function AddTripForm() {
-  const { register, handleSubmit, control } = useForm<FormData>();
-  const onSubmit = (data: FormData) => console.log("data", data);
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  });
+  const onSubmit = (data: z.infer<typeof FormSchema>) =>
+    console.log("data", data);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("name")} />
-        <input {...register("desc")} />
-        <Controller
-          control={control}
-          name="dateFrom"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className=" w-64 space-y-6">
+        <FormField
+          control={form.control}
+          name="name"
           render={({ field }) => (
-            <DatePicker
-              placeholderText="Date From"
-              onChange={(date) => field.onChange(date)}
-              selected={field.value}
-            />
+            <FormItem>
+              <FormLabel>Trip Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Teambuilding in Berlin" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
         />
-        <Controller
-          control={control}
-          name="dateUntil"
+        <FormField
+          control={form.control}
+          name="desc"
           render={({ field }) => (
-            <DatePicker
-              placeholderText="Date Until"
-              onChange={(date) => field.onChange(date)}
-              selected={field.value}
-            />
+            <FormItem>
+              <FormLabel>Trip description</FormLabel>
+              <FormControl>
+                <Input placeholder="Short trip description." {...field} />
+              </FormControl>
+            </FormItem>
           )}
         />
+        <Button type="submit">Submit</Button>
       </form>
-    </div>
+    </Form>
   );
 }
 export default AddTripForm;
