@@ -10,7 +10,6 @@ const fetchTripsForUsername = async (email: string) =>
 export async function Sidebar() {
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.user.email) return null;
-
   const trips = (await fetchTripsForUsername(session.user.email))?.trips;
 
   return (

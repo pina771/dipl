@@ -1,3 +1,5 @@
-export default function Default() {
-  return <div>Add trip</div>;
+import AddTripForm from "../../components/AddTripForm";
+
+export default function AddTripFormPage() {
+  return <AddTripForm />;
 }

@@ -22,10 +22,10 @@ const TopBar = async ({ id }: { id: string }) => {
         </ul>
         <div className="flex gap-4 items-center">
           <TripMembers tripMembers={tripInfo.users} />
+          <Link href={`/trips/${id}/add-member`}>
+            <PlusCircle className="h-8 w-8" />
+          </Link>
         </div>
-        <Link href={`/trips/${id}/add-member`}>
-          <PlusCircle className="h-8 w-8" />
-        </Link>
       </div>
     </div>
   );
