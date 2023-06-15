@@ -1,12 +1,10 @@
-import { Trip } from "@prisma/client";
+import { PlusCircle, UserPlus } from "lucide-react";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { getTripInfoAndMembers } from "../../lib/functions/trips";
 import TripMembers from "./TripMembers";
-import { getTripInfo } from "../../lib/functions/getTripInfo";
-import { PlusCircle } from "lucide-react";
 
 const TopBar = async ({ id }: { id: string }) => {
-  const tripInfo = await getTripInfo(id);
+  const tripInfo = await getTripInfoAndMembers(id);
   if (!tripInfo) throw new Error("Error with tripInfo in topBar");
 
   return (
@@ -23,7 +21,7 @@ const TopBar = async ({ id }: { id: string }) => {
         <div className="flex gap-4 items-center">
           <TripMembers tripMembers={tripInfo.users} />
           <Link href={`/trips/${id}/add-member`}>
-            <PlusCircle className="h-8 w-8" />
+            <UserPlus size={28} />
           </Link>
         </div>
       </div>

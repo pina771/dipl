@@ -12,14 +12,12 @@ const Login = () => {
 
   const handleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
-    signIn("credentials", { ...formData, callbackUrl: "/home" }).then(
-      (callback) => {
-        if (callback?.error) toast.error(callback.error);
-        if (callback?.ok && !callback?.error) {
-          toast.success("User signed in.");
-        }
+    signIn("credentials", { ...formData }).then((callback) => {
+      if (callback?.error) toast.error(callback.error);
+      if (callback?.ok && !callback?.error) {
+        toast.success("User signed in.");
       }
-    );
+    });
   };
 
   if (session.status === "authenticated") {

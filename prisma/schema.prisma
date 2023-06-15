@@ -35,17 +35,27 @@ model Session {
 }
 
 model User {
-    id             String    @id @default(cuid())
-    name           String?
-    email          String?   @unique
+    id             String      @id @default(cuid())
+    name           String
+    email          String      @unique
     emailVerified  DateTime?
     hashedPassword String?
     image          String?
     accounts       Account[]
     sessions       Session[]
-    trips          Trip[]
-    friends        User[]    @relation("UserFriends")
-    friends2       User[]    @relation("UserFriends")
+    friends        User[]      @relation("UserFriends")
+    friends2       User[]      @relation("UserFriends")
+    userTrips      UserTrips[]
+}
+
+model UserTrips {
+    user   User   @relation(fields: [userId], references: [id])
+    userId String
+    trip   Trip   @relation(fields: [tripId], references: [id])
+    tripId String
+    status String @default("pending")
+
+    @@id([userId, tripId])
 }
 
 model Trip {
@@ -55,7 +65,7 @@ model Trip {
     dateFrom         DateTime
     dateUntil        DateTime
     pointsOfInterest PointOfInterest[]
-    users            User[]
+    userTrips        UserTrips[]
 }
 
 model PointOfInterest {

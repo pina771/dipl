@@ -3,14 +3,13 @@ import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-
-const fetchTripsForUsername = async (email: string) =>
-  prisma.user.findFirst({ where: { email: email }, include: { trips: true } });
+import { getTripsForUser } from "../../lib/functions/user";
 
 export async function Sidebar() {
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.user.email) return null;
-  const trips = (await fetchTripsForUsername(session.user.email))?.trips;
+
+  const trips = await getTripsForUser(session.user.id);
 
   return (
     <nav className="flex flex-col min-h-screen w-64 bg-slate-100 p-4">
