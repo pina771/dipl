@@ -41,7 +41,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
     >
       <div
         ref={wrapper}
-        className="bg-white p-4 rounded-md shadow-lg w-fit border-border border "
+        className="bg-white p-4 rounded-md shadow-lg border-border border"
       >
         {children}
       </div>

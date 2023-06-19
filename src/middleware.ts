@@ -15,5 +15,5 @@ export default withAuth({
   secret: process.env.SECRET,
 });
 export const config = {
-  matcher: ["/(home|trips)/:path*", "/login", "/register"],
+  matcher: ["/(home|trips)/:path*"],
 };

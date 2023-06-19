@@ -1,6 +1,6 @@
 import TopBar from "../../components/TopBar";
 
-const TripLayout = async ({
+const TripLayout = ({
   children,
   params,
 }: {

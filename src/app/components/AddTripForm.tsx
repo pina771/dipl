@@ -45,7 +45,10 @@ function AddTripForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6 max-w-xl flex-1"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -83,18 +86,19 @@ function AddTripForm() {
           control={form.control}
           name="dateRange"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem>
               <FormControl>
                 <Calendar
                   mode="range"
                   selected={field.value}
                   onSelect={field.onChange}
+                  className=" justify-center"
                 />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Add</Button>
       </form>
     </Form>
   );

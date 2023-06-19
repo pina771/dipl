@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authOptions } from "../../../auth/[...nextauth]/route";
+import { revalidateTag } from "next/cache";
 
 type RouteParams = {
   id: string;

@@ -43,7 +43,7 @@ const AddMemberForm = ({ tripId, friends }: AddMemberFormProps) => {
         <Input
           type="text"
           disabled
-          value={`https://localhost:3000/trips/${tripId}/join`}
+          value={`https://localhost:3000/trips/join/${tripId}`}
           className="w-[50ch]"
         />
         <Button onClick={handleCopy}>

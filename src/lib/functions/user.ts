@@ -1,3 +1,4 @@
+import { Trip } from "@prisma/client";
 import { prisma } from "../prisma";
 
 export async function getFriendsForUser(userId: string) {
@@ -16,8 +17,17 @@ export async function getFriendsForUser(userId: string) {
 
 export async function getTripsForUser(userId: string) {
   const userTrips = await prisma.userTrips.findMany({
-    where: { userId: userId, status: "confirmed" },
+    where: { userId: userId },
     include: { trip: true },
   });
-  return userTrips.map((userTrip) => userTrip.trip);
+  const retval: { confirmedTrips: Trip[]; pendingTrips: Trip[] } = {
+    confirmedTrips: [],
+    pendingTrips: [],
+  };
+  userTrips.forEach((userTrip) =>
+    userTrip.status === "pending"
+      ? retval.pendingTrips.push(userTrip.trip)
+      : retval.confirmedTrips.push(userTrip.trip)
+  );
+  return retval;
 }

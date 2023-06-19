@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import ToasterContext from "./context/ToasterContext";
 import Provider from "./context/AuthContext";
-import { Sidebar } from "./components/Sidebar";
+import { Sidebar } from "./components/sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <div className="flex">
-            <Sidebar />
-            <div className="flex-1">{children}</div>
-          </div>
+          {children}
           {modal}
           <ToasterContext />
         </Provider>
