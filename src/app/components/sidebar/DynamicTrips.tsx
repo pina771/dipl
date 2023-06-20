@@ -37,17 +37,15 @@ export function DynamicTrips({}: {}) {
             {data?.pendingTrips.length ?? ""} Invitations
           </Button>
         </PopoverTrigger>
-        <PopoverContent>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            data?.pendingTrips.map((trip) => (
+        {!isLoading && data!.pendingTrips.length > 0 && (
+          <PopoverContent>
+            {data?.pendingTrips.map((trip) => (
               <Link key={trip.id} href={`/trips/join/${trip.id}`}>
                 {trip.name}
               </Link>
-            ))
-          )}
-        </PopoverContent>
+            ))}
+          </PopoverContent>
+        )}
       </Popover>
       <div className="flex flex-col mt-4">
         <h3 className="text-xl font-semibold">Your trips:</h3>

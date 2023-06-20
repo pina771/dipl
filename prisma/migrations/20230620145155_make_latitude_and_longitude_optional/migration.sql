@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "PointOfInterest" ALTER COLUMN "lat" DROP NOT NULL,
+ALTER COLUMN "lon" DROP NOT NULL;

@@ -74,9 +74,9 @@ model PointOfInterest {
 
     name   String
     desc   String?
-    status String  @default("awaiting")
-    lat    String
-    lon    String
+    status String  @default("pending")
+    lat    String?
+    lon    String?
 
     categories Category[]
     trip       Trip       @relation(fields: [tripId], references: [id])
@@ -85,6 +85,7 @@ model PointOfInterest {
 model Category {
     id               Int               @id @default(autoincrement())
     name             String
+    color            String            @default("#27272A")
     pointsOfInterest PointOfInterest[]
 }
 

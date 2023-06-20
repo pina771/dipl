@@ -10,7 +10,7 @@ const TripLayout = ({
   // TODO: Check if user is a member of trip
   // if not , then redirect him to /home
   return (
-    <div>
+    <div className="h-full flex flex-col">
       <TopBar id={params.id} />
       {children}
     </div>
