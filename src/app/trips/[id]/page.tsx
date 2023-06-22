@@ -1,6 +1,6 @@
 import { getCategories } from "../../../lib/functions/categories";
 import { getTripPointsOfInterest } from "../../../lib/functions/trips";
-import { DynamicCategoryIcon } from "../../components/trip/DynamicCategoryIcon";
+import PointOfInterestCard from "../../components/trip/PointOfInterestCard";
 import { PointOfInterestForm } from "../../components/trip/PointOfInterestForm";
 
 async function Trip({ params }: { params: { id: string } }) {
@@ -9,16 +9,16 @@ async function Trip({ params }: { params: { id: string } }) {
   const pointsOfInterest = await getTripPointsOfInterest(params.id);
 
   return (
-    <div className="flex h-full">
-      <div className="flex flex-col flex-1 h-full justify-between max-w-prose ml-4 ">
-        <div>{JSON.stringify(pointsOfInterest)}</div>
-
-        <div>
-          <PointOfInterestForm tripId={params.id} categories={categories} />
-        </div>
+    <>
+      <div className="flex flex-col gap-4">
+        {pointsOfInterest.map((poi) => (
+          <PointOfInterestCard key={poi.id} pointOfInterest={poi} />
+        ))}
       </div>
-      <div className="flex flex-col flex-1 h-full"></div>
-    </div>
+      <div className="mt-auto">
+        <PointOfInterestForm tripId={params.id} categories={categories} />
+      </div>
+    </>
   );
 }
 export default Trip;

@@ -4,18 +4,19 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { useToast } from "../components/ui/use-toast";
 
 const Login = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const session = useSession();
 
   const handleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
     signIn("credentials", { ...formData }).then((callback) => {
-      if (callback?.error) toast.error(callback.error);
+      if (callback?.error) toast({ title: callback.error });
       if (callback?.ok && !callback?.error) {
-        toast.success("User signed in.");
+        toast({ title: "Success", description: "User signed in." });
       }
     });
   };

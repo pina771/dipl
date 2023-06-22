@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import Link from "next/link";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
+import { SignOutButton } from "../SignOutButton";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
 import { Button } from "../ui/button";
 import { DynamicTrips } from "./DynamicTrips";
@@ -30,11 +31,14 @@ export async function Sidebar() {
           <h2 className=" text-lg font-semibold">{session.user.name}</h2>
         </div>
       </Link>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 h-full ">
         <Button asChild>
           <Link href="/trips/add">New Trip</Link>
         </Button>
-        <DynamicTrips />
+        <DynamicTrips userId={session.user.id} />
+        <div className="mt-auto">
+          <SignOutButton />
+        </div>
       </div>
     </nav>
   );

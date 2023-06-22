@@ -1,9 +1,7 @@
 "use client";
-import { toast } from "react-hot-toast";
-import { JoinTripRequestBody } from "../api/trips/join/[id]/route";
-import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 function JoinTripButtons({
   userId,
   tripId,
@@ -40,30 +38,6 @@ function JoinTripButtons({
       router.push("/home");
     },
   });
-
-  // const handleJoinOrDecline = async (
-  //   event: React.MouseEvent,
-  //   joinDecline: "decline" | "join"
-  // ) => {
-  //   event.preventDefault();
-
-  //   const reqData: JoinTripRequestBody = {
-  //     userId,
-  //     joinDecline,
-  //   };
-  //   await fetch(`/api/trips/join/${tripId}`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(reqData),
-  //   }).then((response) =>
-  //     response.json().then((data) => {
-  //       router.push(`/home`);
-  //       toast.success(data.message);
-  //     })
-  //   );
-  // };
 
   return (
     <>

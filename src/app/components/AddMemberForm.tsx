@@ -1,10 +1,9 @@
 "use client";
 
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 import { Copy, Plus } from "lucide-react";
-import { toast } from "react-hot-toast";
-import { User } from "@prisma/client";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { useToast } from "./ui/use-toast";
 
 type AddMemberFormProps = {
   tripId: string;
@@ -12,9 +11,10 @@ type AddMemberFormProps = {
 };
 
 const AddMemberForm = ({ tripId, friends }: AddMemberFormProps) => {
+  const { toast } = useToast();
   const handleCopy = () => {
     navigator.clipboard.writeText(`http://localhost:3000/trips/${tripId}/join`);
-    toast.success("Copied to clipboard!");
+    toast({ title: "Copied to clipboard!" });
   };
 
   const handleAddFriendToTrip = async (
@@ -31,7 +31,9 @@ const AddMemberForm = ({ tripId, friends }: AddMemberFormProps) => {
       response
         .json()
         .then((data) =>
-          response.ok ? toast.success(data.message) : toast.error(data.message)
+          response.ok
+            ? toast({ title: data.message })
+            : toast({ title: data.message })
         );
     });
   };

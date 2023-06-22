@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@prisma/client";
 import { Check, ChevronsUpDown } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/Form";
@@ -11,13 +12,12 @@ import { Command, CommandGroup, CommandItem } from "../ui/command";
 import { Input } from "../ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Textarea } from "../ui/textarea";
+import { useToast } from "../ui/use-toast";
 import { DynamicCategoryIcon } from "./DynamicCategoryIcon";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 const PointOfInterest = z.object({
-  name: z.string().min(8, {
-    message: "Name must be at least 8 characters.",
+  name: z.string().min(4, {
+    message: "Name must be at least 4 characters.",
   }),
   desc: z.string(),
   categoryIds: z.number().array(),
@@ -33,6 +33,7 @@ export const PointOfInterestForm = ({
   tripId,
 }: PointOfInterestFormProps) => {
   const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof PointOfInterest>>({
     resolver: zodResolver(PointOfInterest),
@@ -53,16 +54,16 @@ export const PointOfInterestForm = ({
     }).then(async (res) => {
       const data = await res.json();
       if (!res.ok) {
-        toast.error("err");
+        toast({ title: "error occurred" });
         return;
       }
-      toast.success("success");
+      form.reset();
       router.refresh();
     });
   };
 
   return (
-    <div className="mb-4 p-2 border max-w-prose shadow-sm rounded-md">
+    <div className="mb-4 p-2 border max-w-prose shadow-md rounded-md">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
@@ -107,12 +108,13 @@ export const PointOfInterestForm = ({
                         variant="outline"
                         className="text-muted-foreground "
                         role="combobox"
+                        type="button"
                       >
                         {field.value.length > 0 ? field.value.length + " " : ""}
                         categories
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         {field.value.length > 0 ? (
-                          <div className="ml-2">
+                          <div className="ml-2 flex items-center">
                             {field.value.map((catId) => (
                               <DynamicCategoryIcon
                                 category={categories.find(

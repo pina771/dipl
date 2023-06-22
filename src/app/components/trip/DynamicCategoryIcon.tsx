@@ -22,9 +22,11 @@ import {
 export const DynamicCategoryIcon = ({
   category,
   className = undefined,
+  withTooltip = false,
 }: {
   category?: Category | undefined;
   className?: string;
+  withTooltip?: boolean;
 }) => {
   let iconElement = () => {
     if (!category) return null;
@@ -87,17 +89,19 @@ export const DynamicCategoryIcon = ({
     }
   };
   return category ? (
-    <>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger className="hover:cursor-default">
-            {iconElement()}
-          </TooltipTrigger>
-          <TooltipContent>
-            <p className="">{category.name}</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    </>
+    withTooltip ? (
+      <>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger className="">{iconElement()}</TooltipTrigger>
+            <TooltipContent>
+              <p className="">{category.name}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </>
+    ) : (
+      <>{iconElement()}</>
+    )
   ) : null;
 };

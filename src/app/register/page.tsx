@@ -3,9 +3,11 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { useToast } from "../components/ui/use-toast";
 
 export default function Register() {
+  const { toast } = useToast();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,9 +27,9 @@ export default function Register() {
     }).then((response) => {
       const data = response.json();
       if (response.ok) {
-        toast.success("User has been registered.");
+        toast({ title: "User has been registered." });
         router.push("/login");
-      } else toast.error("error occurred");
+      } else toast({ variant: "destructive", title: "error occurred" });
     });
   };
   if (session.status === "authenticated") redirect("/home");

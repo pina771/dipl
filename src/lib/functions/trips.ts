@@ -32,17 +32,19 @@ export const getTripMembers = async (id: string) => {
 export const getTripPointsOfInterest = async (tripId: string) => {
   const session = await getServerSession(authOptions);
   if (!session?.user) {
-    return NextResponse.json({ message: "Not authorized" }, { status: 401 });
+    throw new Error(
+      "User not authenticated, but attempting to access trip POI."
+    );
   }
 
-  return prisma.trip
-    .findUnique({
+  return prisma.pointOfInterest
+    .findMany({
       where: {
-        id: tripId,
+        tripId: tripId,
       },
       include: {
-        pointsOfInterest: true,
+        categories: true,
       },
     })
-    .then((data) => data?.pointsOfInterest);
+    .then((data) => data ?? []);
 };

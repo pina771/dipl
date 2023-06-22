@@ -1,6 +1,3 @@
-import Image from "next/image";
-import { AuthOptions, getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import Link from "next/link";
 
 export default async function Home() {

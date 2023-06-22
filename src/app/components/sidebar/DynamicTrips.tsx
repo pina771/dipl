@@ -4,6 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Trip } from "@prisma/client";
+import { SocketLoader } from "./SocketLoader";
 
 type ConfirmedPendingTrips = {
   confirmedTrips: Trip[];
@@ -23,7 +24,7 @@ async function fetchTripsForUser(): Promise<ConfirmedPendingTrips> {
     .then((value) => value);
 }
 
-export function DynamicTrips({}: {}) {
+export function DynamicTrips({ userId }: { userId: string }) {
   const { data, isLoading } = useQuery({
     queryKey: ["tripInvites"],
     queryFn: fetchTripsForUser,
@@ -48,7 +49,10 @@ export function DynamicTrips({}: {}) {
         )}
       </Popover>
       <div className="flex flex-col mt-4">
-        <h3 className="text-xl font-semibold">Your trips:</h3>
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="text-xl font-semibold">Your trips:</h3>
+          <SocketLoader userId={userId} trips={data?.confirmedTrips} />
+        </div>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
@@ -57,6 +61,7 @@ export function DynamicTrips({}: {}) {
               key={trip.id}
               variant="ghost"
               className="justify-start text-lg"
+              asChild
             >
               <Link href={`/trips/${trip.id}`}>{trip.name}</Link>
             </Button>
