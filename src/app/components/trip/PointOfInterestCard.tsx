@@ -12,7 +12,9 @@ function PointOfInterestCard({
       <h2 className="text-lg font-medium leading-none">
         {pointOfInterest.name}
       </h2>
-      <p className="text-muted-foreground my-2">{pointOfInterest.desc}</p>
+      <p className="text-muted-foreground text-sm my-2">
+        {pointOfInterest.desc}
+      </p>
       <Separator orientation="horizontal" className="mb-2 w-2/5" />
       <div className="space-x-2">
         {pointOfInterest.categories.map((category) => (

@@ -96,85 +96,88 @@ export const PointOfInterestForm = ({
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="categoryIds"
-            render={({ field }) => (
-              <FormItem>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant="outline"
-                        className="text-muted-foreground "
-                        role="combobox"
-                        type="button"
-                      >
-                        {field.value.length > 0 ? field.value.length + " " : ""}
-                        categories
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                        {field.value.length > 0 ? (
-                          <div className="ml-2 flex items-center">
-                            {field.value.map((catId) => (
-                              <DynamicCategoryIcon
-                                category={categories.find(
-                                  (cat) => cat.id === catId
-                                )}
-                                key={catId}
-                              />
-                            ))}
-                          </div>
-                        ) : null}
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent>
-                    <Command>
-                      <CommandGroup>
-                        {categories.map((category) => (
-                          <CommandItem
-                            value={`${category.id}`}
-                            key={category.id}
-                            onSelect={(value) => {
-                              let valAsInt = Number.parseInt(value);
-                              if (field.value.includes(valAsInt)) {
-                                form.setValue(
-                                  "categoryIds",
-                                  field.value.filter(
-                                    (elem) => elem !== valAsInt
-                                  )
-                                );
-                              } else {
-                                form.setValue("categoryIds", [
-                                  Number.parseInt(value),
-                                  ...form.getValues().categoryIds,
-                                ]);
-                              }
-                            }}
-                            className="justify-between"
-                          >
-                            <span
-                              className="font-semibold"
-                              style={{ color: category.color }}
-                            >
-                              {category.name}
-                            </span>
-                            {field.value.includes(category.id) ? (
-                              <Check className="w-4 h-4" />
-                            ) : (
-                              <div className="w-4 h-4" />
-                            )}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-              </FormItem>
-            )}
-          />
 
-          <div className="flex justify-end">
+          <div className="flex justify-between">
+            <FormField
+              control={form.control}
+              name="categoryIds"
+              render={({ field }) => (
+                <FormItem>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant="outline"
+                          className="text-muted-foreground "
+                          role="combobox"
+                          type="button"
+                        >
+                          {field.value.length > 0
+                            ? field.value.length + " "
+                            : ""}
+                          categories
+                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          {field.value.length > 0 ? (
+                            <div className="ml-2 flex items-center">
+                              {field.value.map((catId) => (
+                                <DynamicCategoryIcon
+                                  category={categories.find(
+                                    (cat) => cat.id === catId
+                                  )}
+                                  key={catId}
+                                />
+                              ))}
+                            </div>
+                          ) : null}
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                      <Command>
+                        <CommandGroup>
+                          {categories.map((category) => (
+                            <CommandItem
+                              value={`${category.id}`}
+                              key={category.id}
+                              onSelect={(value) => {
+                                let valAsInt = Number.parseInt(value);
+                                if (field.value.includes(valAsInt)) {
+                                  form.setValue(
+                                    "categoryIds",
+                                    field.value.filter(
+                                      (elem) => elem !== valAsInt
+                                    )
+                                  );
+                                } else {
+                                  form.setValue("categoryIds", [
+                                    Number.parseInt(value),
+                                    ...form.getValues().categoryIds,
+                                  ]);
+                                }
+                              }}
+                              className="justify-between"
+                            >
+                              <span
+                                className="font-semibold"
+                                style={{ color: category.color }}
+                              >
+                                {category.name}
+                              </span>
+                              {field.value.includes(category.id) ? (
+                                <Check className="w-4 h-4" />
+                              ) : (
+                                <div className="w-4 h-4" />
+                              )}
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                </FormItem>
+              )}
+            />
+
             <Button type="submit">Add Item</Button>
           </div>
         </form>

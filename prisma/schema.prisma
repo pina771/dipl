@@ -46,6 +46,7 @@ model User {
     friends        User[]      @relation("UserFriends")
     friends2       User[]      @relation("UserFriends")
     userTrips      UserTrips[]
+    messages       Message[]
 }
 
 model UserTrips {
@@ -66,6 +67,7 @@ model Trip {
     dateUntil        DateTime
     pointsOfInterest PointOfInterest[]
     userTrips        UserTrips[]
+    messages         Message[]
 }
 
 model PointOfInterest {
@@ -87,6 +89,18 @@ model Category {
     name             String
     color            String            @default("#27272A")
     pointsOfInterest PointOfInterest[]
+}
+
+model Message {
+    id        Int      @id @default(autoincrement())
+    tripId    String
+    userId    String
+    msg       String
+    timestamp DateTime
+    name      String
+
+    trip Trip @relation(fields: [tripId], references: [id])
+    user User @relation(fields: [userId], references: [id])
 }
 
 model VerificationToken {

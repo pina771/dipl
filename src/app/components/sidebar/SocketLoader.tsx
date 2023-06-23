@@ -2,15 +2,8 @@
 
 import type { Trip } from "@prisma/client";
 import { CircleDot, CircleOff } from "lucide-react";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import { SocketContext } from "../../context/SocketContext";
-import { Button } from "../ui/button";
-
-interface RoomJoinMsg {
-  userId: string;
-  tripId: string;
-}
-
 export const SocketLoader = ({
   trips,
   userId,
@@ -39,16 +32,9 @@ export const SocketLoader = ({
     }
   }, [trips, socket, userId, connected, joinedTrips]);
 
-  return (
-    <Button
-      size="icon"
-      className=" bg-zinc-500 hover:bg-zinc-600 hover:cursor-default"
-    >
-      {connected ? (
-        <CircleDot className="w-4 h-4 hover" />
-      ) : (
-        <CircleOff className="h-4 w-4" />
-      )}
-    </Button>
+  return connected ? (
+    <CircleDot className="w-4 h-4 hover" />
+  ) : (
+    <CircleOff className="h-4 w-4" />
   );
 };

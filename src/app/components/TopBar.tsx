@@ -8,14 +8,16 @@ const TopBar = async ({ id }: { id: string }) => {
   if (!tripInfo) throw new Error("Error with tripInfo in topBar");
 
   return (
-    <div className=" bg-slate-100 ">
+    <div className="mx-2">
       <div className="flex justify-between items-center p-4">
-        <ul className="flex text-2xl">
-          <li>
+        <ul className="flex">
+          <li className="font-bold text-2xl ">
             <Link href={`/trips/${tripInfo.id}`}>{tripInfo.name}</Link>
           </li>
           <li>
-            <Link href={`/trips/${tripInfo.id}/map`}>Map</Link>
+            <Link href={`/trips/${tripInfo.id}/map`} className="ml-4">
+              Map
+            </Link>
           </li>
         </ul>
         <div className="flex gap-4 items-center">
