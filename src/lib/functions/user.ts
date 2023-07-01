@@ -1,6 +1,7 @@
 import { Trip } from "@prisma/client";
 import { prisma } from "../prisma";
 
+// NOTE: Cachirati ovo ?
 export async function getFriendsForUser(userId: string) {
   const userFriends = await prisma.user
     .findUnique({

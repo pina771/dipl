@@ -26,7 +26,7 @@ async function fetchTripsForUser(): Promise<ConfirmedPendingTrips> {
 
 export function DynamicTrips({ userId }: { userId: string }) {
   const { data, isLoading } = useQuery({
-    queryKey: ["tripInvites"],
+    queryKey: ["userTrips"],
     queryFn: fetchTripsForUser,
     staleTime: 10 * 1000,
   });

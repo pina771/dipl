@@ -1,10 +1,8 @@
-import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../../lib/prisma";
 import { Trip } from "@prisma/client";
+import { getServerSession } from "next-auth";
+import { NextResponse } from "next/server";
+import { prisma } from "../../../../lib/prisma";
 import { authOptions } from "../../auth/[...nextauth]/route";
-
-
 
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);

@@ -18,7 +18,7 @@ export const Chat = ({ tripId }: { tripId: string }) => {
 
   // TODO: React-query to fetch previous messages from the database
   const { data, isLoading } = useQuery({
-    queryKey: [`trip-${tripId}-messages`],
+    queryKey: ["trip-messages", tripId],
     queryFn: () => fetchChatForTrip(tripId),
   });
 

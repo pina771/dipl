@@ -48,7 +48,7 @@ function ChatForm({ tripId }: { tripId: string }) {
 
   const updateQuery = (data: Message): void => {
     queryClient.setQueryData(
-      [`trip-${data.tripId}-messages`],
+      ["trip-messages", data.tripId],
       (old: Message[] | undefined) => (old ? [...old, data] : [data])
     );
   };

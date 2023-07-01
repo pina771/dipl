@@ -11,9 +11,9 @@ export async function Sidebar() {
   if (!session || !session.user || !session.user.email) return null;
 
   return (
-    <nav className="flex flex-col min-h-screen w-64 p-4 gap-4 border">
+    <nav className="flex flex-col min-h-screen w-64 p-4 gap-4">
       <h1 className=" text-2xl font-extrabold  text-indigo-600">TripPlanner</h1>
-      <Link href="/home" prefetch={false}>
+      <Link href={`/home/${session.user.id}`} prefetch={false}>
         <div className="flex items-center p-2 transition-colors hover:bg-secondary rounded-md">
           <Avatar className="w-8 h-8 mr-2">
             <AvatarImage

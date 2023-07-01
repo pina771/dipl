@@ -22,7 +22,7 @@ const Login = () => {
   };
 
   if (session.status === "authenticated") {
-    redirect("/home");
+    redirect(`/${session.data.user.id}`);
   }
 
   return session?.status === "unauthenticated" ? (
