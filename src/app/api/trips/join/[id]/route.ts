@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authOptions } from "../../../auth/[...nextauth]/route";
+import { revalidatePath } from "next/cache";
 
 export type JoinTripRequestBody = {
   joinDecline: "decline" | "join";
@@ -44,6 +45,7 @@ export async function POST(
           status: "confirmed",
         },
       });
+      revalidatePath(`/trips/${tripId}`);
       return NextResponse.json(
         { message: "Accepted invitiation!" },
         { status: 200 }

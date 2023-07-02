@@ -1,7 +1,6 @@
-import React from "react";
 import { Sidebar } from "../components/sidebar/Sidebar";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const SiteLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex">
       <Sidebar />
@@ -9,5 +8,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     </div>
   );
 };
-
-export default Layout;
+export default SiteLayout;

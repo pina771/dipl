@@ -1,12 +1,12 @@
-import { Trip } from "@prisma/client";
-import { prisma } from "../prisma";
-import { cache } from "react";
 import { getServerSession } from "next-auth";
+import { cache } from "react";
 import { authOptions } from "../../app/api/auth/[...nextauth]/route";
-import { NextResponse } from "next/server";
+import { prisma } from "../prisma";
 
 // NOTE: Ovo bi tribalo pregledat jel radi kako treba
 export const getTripInfoAndMembers = cache(async (id: string) => {
+  console.log("getTripInfoAndMembers=========================");
+
   const tripInfo = await prisma.trip.findUnique({
     where: { id },
   });

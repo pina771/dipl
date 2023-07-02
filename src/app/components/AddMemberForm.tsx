@@ -32,8 +32,8 @@ const AddMemberForm = ({ tripId, friends }: AddMemberFormProps) => {
         .json()
         .then((data) =>
           response.ok
-            ? toast({ title: data.message })
-            : toast({ title: data.message })
+            ? toast({ title: data.message, variant: "secondary" })
+            : toast({ title: data.message, variant: "secondary" })
         );
     });
   };

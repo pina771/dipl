@@ -1,10 +1,9 @@
-"use client";
-import { useQuery } from "@tanstack/react-query";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
-import Link from "next/link";
 import { Trip } from "@prisma/client";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { SocketLoader } from "./SocketLoader";
+import { getTripsForUser } from "../../../lib/functions/user";
 
 type ConfirmedPendingTrips = {
   confirmedTrips: Trip[];
@@ -24,12 +23,9 @@ async function fetchTripsForUser(): Promise<ConfirmedPendingTrips> {
     .then((value) => value);
 }
 
-export function DynamicTrips({ userId }: { userId: string }) {
-  const { data, isLoading } = useQuery({
-    queryKey: ["userTrips"],
-    queryFn: fetchTripsForUser,
-    staleTime: 10 * 1000,
-  });
+export async function DynamicTrips({ userId }: { userId: string }) {
+  const data = await getTripsForUser(userId);
+
   return (
     <>
       <Popover>
@@ -38,7 +34,7 @@ export function DynamicTrips({ userId }: { userId: string }) {
             {data?.pendingTrips.length ?? ""} Invitations
           </Button>
         </PopoverTrigger>
-        {!isLoading && data!.pendingTrips.length > 0 && (
+        {data!.pendingTrips.length > 0 && (
           <PopoverContent>
             {data?.pendingTrips.map((trip) => (
               <Link key={trip.id} href={`/trips/join/${trip.id}`}>
@@ -53,20 +49,18 @@ export function DynamicTrips({ userId }: { userId: string }) {
           <h3 className="text-xl font-semibold">Your trips:</h3>
           <SocketLoader userId={userId} trips={data?.confirmedTrips} />
         </div>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          data?.confirmedTrips.map((trip) => (
-            <Button
-              key={trip.id}
-              variant="ghost"
-              className="justify-start text-lg"
-              asChild
-            >
-              <Link href={`/trips/${trip.id}`}>{trip.name}</Link>
-            </Button>
-          ))
-        )}
+        {data?.confirmedTrips.map((trip) => (
+          <Button
+            key={trip.id}
+            variant="ghost"
+            className="justify-start text-lg"
+            asChild
+          >
+            <Link href={`/trips/${trip.id}`} prefetch={false}>
+              {trip.name}
+            </Link>
+          </Button>
+        ))}
       </div>
     </>
   );

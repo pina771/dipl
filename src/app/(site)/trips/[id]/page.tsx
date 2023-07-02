@@ -1,7 +1,7 @@
-import { getCategories } from "../../../lib/functions/categories";
-import { getTripPointsOfInterest } from "../../../lib/functions/trips";
-import PointOfInterestCard from "../../components/trip/PointOfInterestCard";
-import { PointOfInterestForm } from "../../components/trip/PointOfInterestForm";
+import { getCategories } from "../../../../lib/functions/categories";
+import { getTripPointsOfInterest } from "../../../../lib/functions/trips";
+import PointOfInterestCard from "../../../components/trip/PointOfInterestCard";
+import { PointOfInterestForm } from "../../../components/trip/PointOfInterestForm";
 
 async function Trip({ params }: { params: { id: string } }) {
   const categories = await getCategories();

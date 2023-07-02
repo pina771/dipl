@@ -1,5 +1,6 @@
-import TopBar from "../../components/TopBar";
+import TopBar from "../../../components/TopBar";
 
+export const dynamic = "force-dynamic";
 const TripLayout = ({
   children,
   chat,

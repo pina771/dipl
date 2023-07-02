@@ -1,5 +1,5 @@
-import { getFriendsForUser } from "../../../lib/functions/user";
-import AddFriendForm from "../../components/AddFriendForm";
+import { getFriendsForUser } from "../../../../lib/functions/user";
+import AddFriendForm from "../../../components/AddFriendForm";
 
 const HomeDashboard = async ({ params }: { params: { userId: string } }) => {
   const friendsForUser = await getFriendsForUser(params.userId);

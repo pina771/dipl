@@ -10,7 +10,6 @@ function JoinTripButtons({
   tripId: string;
 }) {
   const router = useRouter();
-  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: async ({
@@ -34,8 +33,8 @@ function JoinTripButtons({
       return response.json();
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["tripInvites"] });
       router.push("/home");
+      router.refresh();
     },
   });
 

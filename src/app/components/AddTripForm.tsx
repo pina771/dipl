@@ -18,6 +18,7 @@ import { Calendar } from "./ui/calendar";
 import { Input } from "./ui/input";
 import { useToast } from "./ui/use-toast";
 import type { DateRange } from "react-day-picker";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   name: z.string().min(5, {
@@ -44,15 +45,13 @@ const addTrip = (data: z.infer<typeof FormSchema>) => {
 };
 
 function AddTripForm() {
-  const queryClient = useQueryClient();
+  const router = useRouter();
   const toast = useToast();
 
-  // NOTE: mutationkey is used in DynamicTrips.tsx
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof FormSchema>) => addTrip(data),
     onSuccess: () => {
       toast.toast({ title: "Success!", description: "Trip added." });
-      queryClient.invalidateQueries({ queryKey: ["user-trips"] });
     },
   });
 
