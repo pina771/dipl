@@ -1,7 +1,6 @@
 import React from "react";
-import { Sidebar } from "../../components/sidebar/Sidebar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>;
+  return <div className="p-4 h-full">{children}</div>;
 };
 export default Layout;

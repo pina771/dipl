@@ -1,27 +1,21 @@
-import TopBar from "../../../components/TopBar";
+import "@/app/leaflet/leaflet.css";
+import Script from "next/script";
+import TopBar from "../components/TopBar";
 
-export const dynamic = "force-dynamic";
-const TripLayout = ({
+const Layout = ({
   children,
-  chat,
   params,
 }: {
   children: React.ReactNode;
-  chat: React.ReactNode;
   params: { id: string };
 }) => {
-  // TODO: Check if user is a member of trip
-  // if not , then redirect him to /home
   return (
     <div className="h-full flex flex-col">
       <TopBar id={params.id} />
-      <div className="flex h-full">
-        <div className="flex flex-col flex-grow h-full justify-between max-w-prose p-2 pl-4">
-          {children}
-        </div>
-        <div className="h-full flex-grow">{chat}</div>
-      </div>
+
+      {children}
+      <Script src="/leaflet.js"></Script>
     </div>
   );
 };
-export default TripLayout;
+export default Layout;

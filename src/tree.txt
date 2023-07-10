@@ -1,0 +1,51 @@
+Folder PATH listing for volume Negroni
+Volume serial number is 0CEB-4AFE
+C:.
+├───app
+│   ├───(site)
+│   │   ├───home
+│   │   │   └───components
+│   │   └───trips
+│   │       ├───add
+│   │       ├───components
+│   │       ├───join
+│   │       │   └───[id]
+│   │       └───[id]
+│   │           ├───add-member
+│   │           ├───main
+│   │           │   └───@chat
+│   │           └───map
+│   ├───@modal
+│   │   └───(.)trips
+│   │       ├───add
+│   │       └───[id]
+│   │           └───add-member
+│   ├───api
+│   │   ├───auth
+│   │   │   ├───token
+│   │   │   └───[...nextauth]
+│   │   ├───register
+│   │   ├───trips
+│   │   │   ├───join
+│   │   │   │   └───[id]
+│   │   │   └───[id]
+│   │   │       ├───add-member
+│   │   │       ├───chat
+│   │   │       └───point-of-interest
+│   │   │           └───[poiId]
+│   │   └───user
+│   │       ├───add-friend
+│   │       └───trips
+│   ├───context
+│   ├───leaflet
+│   │   └───images
+│   ├───login
+│   └───register
+├───components
+│   ├───chat
+│   ├───modals
+│   ├───sidebar
+│   └───ui
+├───lib
+│   └───functions
+└───types

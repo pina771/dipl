@@ -1,16 +1,12 @@
-import Modal from "@/app/components/modals/Modal";
-import { getServerSession } from "next-auth";
-import AddMemberForm from "../../../../components/AddMemberForm";
+import Modal from "@/components/modals/Modal";
+import AddMemberForm from "../../../../(site)/trips/components/AddMemberForm";
 import { getFriendsForUser } from "../../../../../lib/functions/user";
-import { authOptions } from "../../../../api/auth/[...nextauth]/route";
 
 // TODO: Swap link in field with real site URL
 // localhost is not valid
 
 async function AddMembersModal({ params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions);
-  if (!session) throw new Error("AddMembersModal : No session object.");
-  const friends = await getFriendsForUser(session?.user.id);
+  const { friends } = await getFriendsForUser();
   return (
     <Modal>
       <AddMemberForm tripId={params.id} friends={friends} />

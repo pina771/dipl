@@ -1,5 +1,5 @@
-import AddTripForm from "../../../components/AddTripForm";
-import Modal from "../../../components/modals/Modal";
+import AddTripForm from "../../../(site)/trips/components/AddTripForm";
+import Modal from "../../../../components/modals/Modal";
 
 const AddTripModal = () => {
   return (

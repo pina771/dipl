@@ -76,9 +76,9 @@ model PointOfInterest {
 
     name   String
     desc   String?
-    status String  @default("pending")
-    lat    String?
-    lon    String?
+    status String   @default("pending")
+    lat    Decimal?
+    lon    Decimal?
 
     categories Category[]
     trip       Trip       @relation(fields: [tripId], references: [id])

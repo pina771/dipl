@@ -1,6 +1,6 @@
 import { UserPlus } from "lucide-react";
 import { getTripInfoAndMembers } from "../../../../../lib/functions/trips";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../../../../../components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,8 +8,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../../../components/ui/card";
-import JoinTripButtons from "../../../../components/JoinTripButtons";
+} from "../../../../../components/ui/card";
+import JoinTripButtons from "../../components/JoinTripButtons";
 import { Session, getServerSession } from "next-auth";
 import { authOptions } from "../../../../api/auth/[...nextauth]/route";
 async function JoinTripPage({ params }: { params: { id: string } }) {

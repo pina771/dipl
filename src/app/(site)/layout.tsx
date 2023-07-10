@@ -1,4 +1,4 @@
-import { Sidebar } from "../components/sidebar/Sidebar";
+import { Sidebar } from "../../components/sidebar/Sidebar";
 
 const SiteLayout = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
-import { useToast } from "../components/ui/use-toast";
+import { useToast } from "../../components/ui/use-toast";
 
 export default function Register() {
   const { toast } = useToast();

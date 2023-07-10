@@ -18,7 +18,6 @@ export async function POST(
   if (!session?.user) {
     return NextResponse.json({ message: "Not authorized." }, { status: 401 });
   }
-  console.log(`${session.user.name} ${data.joinDecline} trip ${tripId}`);
   try {
     if (data.joinDecline === "decline") {
       await prisma.userTrips.delete({

@@ -1,12 +1,30 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../../auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
 import { prisma } from "../../../../../lib/prisma";
+import { authOptions } from "../../../auth/[...nextauth]/route";
 
 interface PointOfInterest {
   name: string;
   desc?: string;
   categoryIds: number[];
+}
+
+export async function GET(
+  request: Request,
+  context: { params: { id: string } }
+) {
+  const session = await getServerSession(authOptions);
+  try {
+    const result = await prisma.pointOfInterest.findMany({
+      where: {
+        tripId: context.params.id,
+      },
+    });
+    return NextResponse.json(result);
+  } catch (e) {
+    console.log(e);
+    throw new Error("prisma eerror");
+  }
 }
 
 export async function POST(

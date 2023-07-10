@@ -4,7 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
-import { useToast } from "../components/ui/use-toast";
+import { useToast } from "../../components/ui/use-toast";
 
 const Login = () => {
   const { toast } = useToast();
@@ -22,7 +22,7 @@ const Login = () => {
   };
 
   if (session.status === "authenticated") {
-    redirect(`/${session.data.user.id}`);
+    redirect(`/home`);
   }
 
   return session?.status === "unauthenticated" ? (

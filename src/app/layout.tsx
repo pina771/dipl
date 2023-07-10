@@ -1,4 +1,4 @@
-import { Toaster } from "@/app/components/ui/toaster";
+import { Toaster } from "@/components/ui/toaster";
 import { Inter } from "next/font/google";
 import Provider from "./context/AuthContext";
 import "./globals.css";
